@@ -20,7 +20,7 @@ public class lineChart {
 
 
         lineChart.setCreateSymbols(true);
-        lineChart.setTitle("Bàn thắng/thua và sổ thẻ đỏ/vàng");
+        lineChart.setTitle("Goal/goal conceded and number of yellow/red card");
 
         XYChart.Series<String, Number> series1 = new XYChart.Series<>();
         series1.setName("Goal");
