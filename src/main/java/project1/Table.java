@@ -11,11 +11,11 @@ import javafx.scene.layout.VBox;
 import java.util.List;
 
 public class Table {
-    Button back = new Button("Quay lại");
+    Button back = new Button("Back");
     private final Scene scene;
 
     public Table(){
-        String filePath = "D:\\Desktop\\WC22\\KO.csv";
+        String filePath = "D:\\Desktop\\Prj 1\\WC22\\KO.csv";
         List<String[]> rows = CSVReader.readCSV(filePath);
 
         TableView<ObservableList<String>> tableView = new TableView<>();
@@ -60,7 +60,7 @@ public class Table {
     public Scene getScene() {
         return scene;
     }
-    public void setWelcomeButton2(Runnable action){
+    public void setWelcomeButton(Runnable action){
         back.setOnAction(event -> action.run());
     }
 

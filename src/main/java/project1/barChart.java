@@ -8,19 +8,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Button;
 
 public class barChart {
-    Button back = new Button("Quay lại");
+    Button back = new Button("Back");
 
-    Button detail = new Button("Chi tiết");
+    Button detail = new Button("More details");
 
     public Scene getScene() {
         String filePath = "C:\\Users\\lenovo\\OneDrive\\Documents\\Liverpool.csv";
         List<String[]> data = CSVReader.readCSV(filePath);
 
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Đối thủ");
+        xAxis.setLabel("Opponents");
 
         NumberAxis yAxis = new NumberAxis(-3, 3, 1);
-        yAxis.setLabel("Phong độ thắng/thua");
+        yAxis.setLabel("Recent games");
 
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
 
@@ -59,7 +59,7 @@ public class barChart {
 
         return new Scene(root, 800, 600);
     }
-    public void setWelcomeButton1(Runnable action){
+    public void setWelcomeButton(Runnable action){
         back.setOnAction(event -> action.run());
     }
     public void setLineButton(Runnable action){

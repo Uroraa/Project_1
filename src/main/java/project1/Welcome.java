@@ -28,15 +28,15 @@ public class Welcome {
         gridPane.setVgap(15);
         gridPane.setBackground(new Background(backgrd));
 
-        label = new Label("Chương Trình Thống Kê");
+        label = new Label("Footbal Statics");
         label.setStyle(" -fx-font-size: 40px; -fx-text-fill: red");
 
-        tableButton = new Button("Lịch thi đấu");
+        tableButton = new Button("Schedule");
         tableButton.setStyle("-fx-background-color: orange");
         tableButton.setPrefWidth(150);
         tableButton.setPrefHeight(50);
 
-        chartButton = new Button("Phong độ của đội");
+        chartButton = new Button("Recent games");
         chartButton.setStyle("-fx-background-color: orange");
         chartButton.setPrefWidth(150);
         chartButton.setPrefHeight(50);
