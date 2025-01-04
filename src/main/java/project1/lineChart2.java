@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 
 public class lineChart2 {
     Button back = new Button("Back");
+    Button detail = new Button("More details");
     public Scene getScene(){
         String filePath = "C:\\Users\\lenovo\\OneDrive\\Documents\\Liverpool.csv";
         List<String[]> data = CSVReader.readCSV(filePath);
@@ -42,12 +43,18 @@ public class lineChart2 {
         BorderPane bottom = new BorderPane();
 
         bottom.setLeft(back);
+        bottom.setRight(detail);
 
         root.setCenter(lineChart);
         root.setBottom(bottom);
 
         return new Scene(root, 800, 600);
     }
-    public void setBarButton(Runnable action){
+    public void setLineButton(Runnable action){
         back.setOnAction(event -> action.run());
-    }}
+    }
+    public void setPieButton(Runnable action){
+        detail.setOnAction(event -> action.run());
+    }
+
+}

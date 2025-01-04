@@ -7,10 +7,11 @@ public class Main extends Application{
     public void start(Stage primaryStage){
 
         Welcome welcome = new Welcome();
-        barChart chart1 = new barChart();
+        barChart bar = new barChart();
         Table table = new Table();
-        lineChart chart2 = new lineChart();
-        lineChart2 chart3 = new lineChart2();
+        lineChart line1 = new lineChart();
+        lineChart2 line2 = new lineChart2();
+        pieChart pie = new pieChart();
 
 
         primaryStage.setTitle("Hello Stage");
@@ -18,18 +19,21 @@ public class Main extends Application{
         primaryStage.show();
 
 
-        welcome.setChartButton(() -> primaryStage.setScene(chart1.getScene()));
+        welcome.setChartButton(() -> primaryStage.setScene(bar.getScene()));
         welcome.setTableButton(() -> primaryStage.setScene(table.getScene()));
 
-        chart1.setWelcomeButton(() -> primaryStage.setScene(welcome.getScene()));
-        chart1.setLineButton(() -> primaryStage.setScene(chart2.getScene()));
-
-        chart2.setBarButton(() -> primaryStage.setScene(chart1.getScene()));
-        chart2.setLine2Button(() -> primaryStage.setScene(chart3.getScene()));
-
-        chart3.setBarButton(() -> primaryStage.setScene(chart1.getScene()));
-
         table.setWelcomeButton(() -> primaryStage.setScene(welcome.getScene()));
+
+        bar.setWelcomeButton(() -> primaryStage.setScene(welcome.getScene()));
+        bar.setLineButton(() -> primaryStage.setScene(line1.getScene()));
+
+        line1.setBarButton(() -> primaryStage.setScene(bar.getScene()));
+        line1.setLine2Button(() -> primaryStage.setScene(line2.getScene()));
+
+        line2.setLineButton(() -> primaryStage.setScene(line1.getScene()));
+        line2.setPieButton(() -> primaryStage.setScene(pie.getScene()));
+
+        pie.setLine2Button(() -> primaryStage.setScene(line2.getScene()));
 
     }
 

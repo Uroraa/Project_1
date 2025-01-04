@@ -4,44 +4,79 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import java.util.List;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.*;
 
 public class lineChart {
     Button back = new Button("Back");
     Button detail = new Button("More details");
 
-    public Scene getScene(){
+    public Scene getScene() {
         String filePath = "C:\\Users\\lenovo\\OneDrive\\Documents\\Liverpool.csv";
         List<String[]> data = CSVReader.readCSV(filePath);
 
-        CategoryAxis xAxis = new CategoryAxis();
-        //xAxis.setLabel("Team");
+        CategoryAxis xAxisLine = new CategoryAxis();
+        xAxisLine.setLabel("Match");
 
-        NumberAxis yAxis = new NumberAxis(-10, 10, 1);
-        LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        NumberAxis yAxisLine = new NumberAxis();
+        yAxisLine.setLabel("Goals");
 
+        LineChart<String, Number> lineChart = new LineChart<>(xAxisLine, yAxisLine);
+        lineChart.setTitle("Goal and Goal Conceded Comparison");
 
-        lineChart.setCreateSymbols(true);
-        lineChart.setTitle("Goal and goal conceded");
+        XYChart.Series<String, Number> seriesGoals = new XYChart.Series<>();
+        seriesGoals.setName("Goals");
 
-        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-        series1.setName("Goal");
-        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-        series2.setName("Goal Conceded");
+        XYChart.Series<String, Number> seriesConceded = new XYChart.Series<>();
+        seriesConceded.setName("Goals Conceded");
 
+        for (int i = 1; i < data.size(); i++) {
+            String match = data.get(i)[0];
+            int goals = Integer.parseInt(data.get(i)[2]);
+            int goalsConceded = Integer.parseInt(data.get(i)[3]);
 
-        for(int i = 1; i < data.size(); i++) {
-            String team = data.get(i)[0];
-            int goal = Integer.parseInt(data.get(i)[2]);
-            int goalConceded = Integer.parseInt(data.get(i)[3]);
-
-            series1.getData().add(new XYChart.Data<>(team, goal));
-            series2.getData().add(new XYChart.Data<>(team, goalConceded));
+            seriesGoals.getData().add(new XYChart.Data<>(match, goals));
+            seriesConceded.getData().add(new XYChart.Data<>(match, goalsConceded));
         }
 
-        lineChart.getData().add(series1);
-        lineChart.getData().add(series2);
+        lineChart.getData().addAll(seriesGoals, seriesConceded);
 
+
+        NumberAxis xAxisBubble = new NumberAxis();
+        xAxisBubble.setLabel("Match Index");
+
+        NumberAxis yAxisBubble = new NumberAxis();
+        yAxisBubble.setLabel("Goals");
+
+        BubbleChart<Number, Number> bubbleChart = new BubbleChart<>(xAxisBubble, yAxisBubble);
+        bubbleChart.setTitle("Goals Difference (Bubble Size)");
+
+        XYChart.Series<Number, Number> bubbleSeries = new XYChart.Series<>();
+        bubbleSeries.setName("Goal Difference");
+
+        for (int i = 1; i < data.size(); i++) {
+            int matchIndex = i;
+            int goals = Integer.parseInt(data.get(i)[2]);
+            int goalsConceded = Integer.parseInt(data.get(i)[3]);
+            int difference = Math.abs(goals - goalsConceded);
+
+            XYChart.Data<Number, Number> bubble = new XYChart.Data<>(matchIndex, goals, difference);
+
+            bubble.nodeProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    if (goalsConceded > goals) {
+                        newValue.setStyle("-fx-border-color: red; -fx-border-width: 2px");
+                    } else {
+                        newValue.setStyle("-fx-border-color: green; -fx-border-width: 2px");
+                    }
+                }
+            });
+
+            bubbleSeries.getData().add(bubble);
+        }
+
+        bubbleChart.getData().add(bubbleSeries);
+
+        VBox chartContainer = new VBox(lineChart, bubbleChart);
 
         BorderPane root = new BorderPane();
         BorderPane bottom = new BorderPane();
@@ -49,7 +84,7 @@ public class lineChart {
         bottom.setLeft(back);
         bottom.setRight(detail);
 
-        root.setCenter(lineChart);
+        root.setCenter(chartContainer);
         root.setBottom(bottom);
 
         return new Scene(root, 800, 600);

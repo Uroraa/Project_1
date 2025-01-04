@@ -36,7 +36,7 @@ public class Welcome {
         tableButton.setPrefWidth(150);
         tableButton.setPrefHeight(50);
 
-        chartButton = new Button("Recent games");
+        chartButton = new Button("Team performance");
         chartButton.setStyle("-fx-background-color: orange");
         chartButton.setPrefWidth(150);
         chartButton.setPrefHeight(50);
