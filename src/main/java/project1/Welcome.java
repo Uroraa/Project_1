@@ -8,8 +8,8 @@ import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 
 public class Welcome {
-    private final Scene scene;
-    private final Button tableButton, chartButton;
+    Scene scene;
+    Button tableButton, chartButton, player;
     Label label;
 
     public Welcome(){
@@ -36,18 +36,25 @@ public class Welcome {
         tableButton.setPrefWidth(150);
         tableButton.setPrefHeight(50);
 
-        chartButton = new Button("Team performance");
+        chartButton = new Button("Liverpool's performance");
         chartButton.setStyle("-fx-background-color: orange");
         chartButton.setPrefWidth(150);
         chartButton.setPrefHeight(50);
 
+        player = new Button("Player's performance");
+        player.setStyle("-fx-background-color: orange");
+        player.setPrefWidth(150);
+        player.setPrefHeight(50);
+
         gridPane.add(label, 2, 0, 10, 3);
         gridPane.add(tableButton, 0, 4, 2, 1);
         gridPane.add(chartButton, 0, 5, 2, 1);
+        gridPane.add(player, 0, 6, 2, 1);
 
         GridPane.setHalignment(label, HPos.RIGHT);
         GridPane.setHalignment(tableButton, HPos.CENTER);
         GridPane.setHalignment(chartButton, HPos.CENTER);
+        GridPane.setHalignment(player, HPos.CENTER);
 
         this.scene = new Scene(gridPane, 800, 600);
 
@@ -60,5 +67,8 @@ public class Welcome {
     }
     public void setTableButton(Runnable action){
         tableButton.setOnAction(event -> action.run());
+    }
+    public void setPlayerButton(Runnable action){
+        player.setOnAction(event -> action.run());
     }
 }

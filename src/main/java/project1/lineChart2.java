@@ -8,9 +8,9 @@ import javafx.scene.layout.BorderPane;
 
 public class lineChart2 {
     Button back = new Button("Back");
-    Button detail = new Button("More details");
+    Button detail = new Button("More...");
     public Scene getScene(){
-        String filePath = "C:\\Users\\lenovo\\OneDrive\\Documents\\Liverpool.csv";
+        String filePath = "D:\\Desktop\\Prj 1\\Liverpool.csv";
         List<String[]> data = CSVReader.readCSV(filePath);
 
         CategoryAxis xAxis = new CategoryAxis();
@@ -18,7 +18,7 @@ public class lineChart2 {
 
         NumberAxis yAxis = new NumberAxis(-10, 10, 1);
         LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
-
+        yAxis.setLowerBound(0);
 
         lineChart.setCreateSymbols(true);
         lineChart.setTitle("Number of yellow and red card");

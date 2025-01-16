@@ -15,7 +15,7 @@ public class Table {
     private final Scene scene;
 
     public Table(){
-        String filePath = "D:\\Desktop\\Prj 1\\WC22\\KO.csv";
+        String filePath = "D:\\Desktop\\Prj 1\\WC22\\WC 22.csv";
         List<String[]> rows = CSVReader.readCSV(filePath);
 
         TableView<ObservableList<String>> tableView = new TableView<>();
@@ -48,11 +48,11 @@ public class Table {
 
         BorderPane root = new BorderPane();
         BorderPane bottom = new BorderPane();
-        VBox table = new VBox(tableView);
+        //VBox table = new VBox(tableView);
 
         bottom.setLeft(back);
 
-        root.setCenter(table);
+        root.setCenter(tableView);
         root.setBottom(bottom);
 
         this.scene = new Scene(root, 800, 600);

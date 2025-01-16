@@ -8,7 +8,7 @@ public class pieChart {
     Button back = new Button("Back");
     Button home = new Button("Home");
     public Scene getScene(){
-        String filePath = "C:\\Users\\lenovo\\OneDrive\\Documents\\Liverpool.csv";
+        String filePath = "D:\\Desktop\\Prj 1\\Liverpool.csv";
         List<String[]> data = CSVReader.readCSV(filePath);
 
         int wins = 0;
@@ -44,6 +44,7 @@ public class pieChart {
         BorderPane root = new BorderPane();
         BorderPane bottom = new BorderPane();
         bottom.setLeft(back);
+        bottom.setRight(home);
 
         root.setCenter(pieChart);
         root.setBottom(bottom);
@@ -55,6 +56,6 @@ public class pieChart {
     }
 
     public void setWelcomeButton(Runnable action){
-        back.setOnAction(event -> action.run());
+        home.setOnAction(event -> action.run());
     }
 }

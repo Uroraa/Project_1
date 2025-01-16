@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public class barChart {
     Button back = new Button("Back");
 
-    Button detail = new Button("More details");
+    Button detail = new Button("Details");
 
     public Scene getScene() {
         String filePath = "D:\\Desktop\\Prj 1\\Liverpool.csv";
@@ -58,7 +58,7 @@ public class barChart {
         yAxis2.setLabel("Matches");
 
         StackedBarChart<String, Number> stackedBarChart = new StackedBarChart<>(xAxis2, yAxis2);
-        stackedBarChart.setTitle("Liverpool Match History");
+        stackedBarChart.setTitle("Liverpool's Match History");
 
         XYChart.Series<String, Number> winsSeries = new XYChart.Series<>();
         winsSeries.setName("Wins");

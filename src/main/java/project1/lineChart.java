@@ -8,10 +8,10 @@ import javafx.scene.layout.*;
 
 public class lineChart {
     Button back = new Button("Back");
-    Button detail = new Button("More details");
+    Button detail = new Button("More...");
 
     public Scene getScene() {
-        String filePath = "C:\\Users\\lenovo\\OneDrive\\Documents\\Liverpool.csv";
+        String filePath = "D:\\Desktop\\Prj 1\\Liverpool.csv";
         List<String[]> data = CSVReader.readCSV(filePath);
 
         CategoryAxis xAxisLine = new CategoryAxis();
@@ -21,7 +21,7 @@ public class lineChart {
         yAxisLine.setLabel("Goals");
 
         LineChart<String, Number> lineChart = new LineChart<>(xAxisLine, yAxisLine);
-        lineChart.setTitle("Goal and Goal Conceded Comparison");
+        lineChart.setTitle("Goals and Goals Conceded Comparison");
 
         XYChart.Series<String, Number> seriesGoals = new XYChart.Series<>();
         seriesGoals.setName("Goals");
